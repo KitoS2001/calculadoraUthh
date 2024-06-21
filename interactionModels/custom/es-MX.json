@@ -30,17 +30,6 @@
           "samples": []
         },
         {
-          "slots": [],
-          "name": "helloWordIntent",
-          "samples": [
-            "hola mundo",
-            "di hola",
-            "di hola mundo",
-            "como estás",
-            "hola"
-          ]
-        },
-        {
           "slots": [
             {
               "name": "uno",
@@ -53,9 +42,9 @@
           ],
           "name": "sumaIntent",
           "samples": [
-            "alexa cuanto es {uno} mas {dos}",
-            "alexa {uno} mas {dos}",
-            "alexa suma {uno} mas {dos}"
+            "cual es el resultado de {uno} mas {dos}",
+            "cuanto es {uno} mas {dos}",
+            "suma {uno} mas {dos}"
           ]
         },
         {
@@ -71,9 +60,9 @@
           ],
           "name": "restaIntent",
           "samples": [
-            "alexa resta {uno} menos {dos}",
-            "alexa cuanto es {uno} menos {dos}",
-            "alexa {uno} menos {dos}"
+            "alexa {dos} menos {uno}",
+            "alexa cuando es {dos} menos {uno}",
+            "alexa resta {dos} menos {uno}"
           ]
         },
         {
@@ -89,27 +78,9 @@
           ],
           "name": "multiplicacionIntent",
           "samples": [
-            "aleca {uno} por {dos}",
-            "alexa cuanto es {uno} por {dos}",
-            "alexa multiplica {uno} por {dos}"
-          ]
-        },
-        {
-          "slots": [
-            {
-              "name": "uno",
-              "type": "AMAZON.NUMBER"
-            },
-            {
-              "name": "dos",
-              "type": "AMAZON.NUMBER"
-            }
-          ],
-          "name": "divicionIntent",
-          "samples": [
-            "alexa cuanto es {uno} entre {dos}",
-            "alexa {uno} entre {dos}",
-            "alexa divide {uno} entre {dos}"
+            "alexa multiplica {uno} por {dos}",
+            "alexa {uno} multiplicado por {dos}",
+            "alexa cuanto es {uno} multiplicado por {dos}"
           ]
         },
         {
@@ -121,9 +92,9 @@
           ],
           "name": "raizIntent",
           "samples": [
+            "alexa raiz de {uno}",
             "alexa cuanto es la raiz de {uno}",
-            "alexa saca la raiz de {uno}",
-            "alexa raiz de {uno}"
+            "alexa la raiz de {uno}"
           ]
         },
         {
@@ -141,11 +112,31 @@
               "type": "LISTA_UNIDADES"
             }
           ],
-          "name": "conversionUnidadesIntent",
+          "name": "ConversionUnidadesIntent",
           "samples": [
-            "convierte {cantidad} {unidadOrigen} {unidadDestino}",
+            "convierte {cantidad} {unidadOrigen} a {unidadDestino}",
             "convierte {cantidad} {unidadOrigen} en {unidadDestino}",
-            "convierte {cantidad} {unidadOrigen} a {unidadDestino}"
+            "convierte {cantidad} {unidadOrigen} {unidadDestino}",
+            "{cantidad} {unidadOrigen} a {unidadDestino}",
+            "{cantidad} {unidadOrigen} en {unidadDestino}"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "uno",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "dos",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "name": "divicionIntent",
+          "samples": [
+            "alexa cuanto es {uno} dividido entre {dos}",
+            "alexa {uno} entre {dos}",
+            "alexa divide {uno} entre {dos}"
           ]
         }
       ],
@@ -154,12 +145,7 @@
           "values": [
             {
               "name": {
-                "value": "millas"
-              }
-            },
-            {
-              "name": {
-                "value": "kilometros"
+                "value": "metros"
               }
             },
             {
@@ -169,7 +155,12 @@
             },
             {
               "name": {
-                "value": "metros"
+                "value": "kilómetros"
+              }
+            },
+            {
+              "name": {
+                "value": "millas"
               }
             }
           ],

@@ -24,7 +24,7 @@ const HelloWorldIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hello World!';
+        const speakOutput = '¡Hola Mundo!';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -114,38 +114,7 @@ const MultiplicacionIntentHandler = {
     }
 };
 
-const DivisionIntentHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
-               Alexa.getIntentName(handlerInput.requestEnvelope) === 'divisionIntent';
-    },
-    handle(handlerInput) {
-        const cantidad = handlerInput.requestEnvelope.request.intent.slots.uno.value;
-        const cantidadd = handlerInput.requestEnvelope.request.intent.slots.dos.value;
 
-        const numero1 = Number(cantidad);
-        const numero2 = Number(cantidadd);
-
-        if (isNaN(numero1) || isNaN(numero2)) {
-            return handlerInput.responseBuilder
-                .speak('Lo siento, no pude entender los números. Por favor, inténtalo de nuevo.')
-                .getResponse();
-        }
-
-        if (numero2 === 0) {
-            return handlerInput.responseBuilder
-                .speak('Lo siento, no puedo dividir entre cero. Por favor, inténtalo de nuevo con un número diferente.')
-                .getResponse();
-        }
-
-        const resultado = numero1 / numero2;
-        const speakOutput = `Calculadora UTHH... El resultado de la división de ${numero1} entre ${numero2} es igual a ${resultado}.`;
-
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .getResponse();
-    }
-};
 
 const RaizIntentHandler = {
     canHandle(handlerInput) {
@@ -157,20 +126,14 @@ const RaizIntentHandler = {
 
         const numero = Number(cantidad);
 
-        if (isNaN(numero)) {
+        if (isNaN(numero) || numero < 0) {
             return handlerInput.responseBuilder
-                .speak('Lo siento, no pude entender el número. Por favor, inténtalo de nuevo.')
-                .getResponse();
-        }
-
-        if (numero < 0) {
-            return handlerInput.responseBuilder
-                .speak('Lo siento, no puedo calcular la raíz cuadrada de un número negativo. Por favor, inténtalo de nuevo con un número diferente.')
+                .speak('Lo siento, no pude entender el número o es negativo. Por favor, inténtalo de nuevo.')
                 .getResponse();
         }
 
         const resultado = Math.sqrt(numero);
-        const speakOutput = `Calculadora UTHH... El resultado de la raíz cuadrada de ${numero} es igual a ${resultado}.`;
+        const speakOutput = `Calculadora UTHH... La raíz cuadrada de ${numero} es igual a ${resultado}.`;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -236,13 +199,41 @@ const ConversionUnidadesIntentHandler = {
     }
 };
 
+const DivisionIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
+               Alexa.getIntentName(handlerInput.requestEnvelope) === 'divicionIntent';
+    },
+    handle(handlerInput) {
+        const cantidad = handlerInput.requestEnvelope.request.intent.slots.uno.value;
+        const cantidadd = handlerInput.requestEnvelope.request.intent.slots.dos.value;
+
+        const numero1 = Number(cantidad);
+        const numero2 = Number(cantidadd);
+
+        if (isNaN(numero1) || isNaN(numero2) || numero2 === 0) {
+            return handlerInput.responseBuilder
+                .speak('Lo siento, no pude entender los números o el divisor es cero. Por favor, inténtalo de nuevo.')
+                .getResponse();
+        }
+
+        const resultado = numero1 / numero2;
+        const speakOutput = `Calculadora UTHH... El resultado de la división de ${numero1} entre ${numero2} es igual a ${resultado}.`;
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .getResponse();
+    }
+};
+
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'You can say hello to me! How can I help?';
+        const speakOutput = 'Puedes decirme hola. ¿Cómo puedo ayudarte?';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -258,7 +249,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Goodbye!';
+        const speakOutput = '¡Adiós!';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -276,7 +267,7 @@ const FallbackIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Sorry, I don\'t know about that. Please try again.';
+        const speakOutput = 'Lo siento, no sé sobre eso. Por favor, intenta de nuevo.';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -328,7 +319,7 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
+        const speakOutput = 'Lo siento, tuve problemas para hacer lo que pediste. Por favor, inténtalo de nuevo.';
         console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
 
         return handlerInput.responseBuilder
@@ -347,16 +338,16 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         HelloWorldIntentHandler,
+        SumaIntentHandler,
+        RestaIntentHandler,
+        MultiplicacionIntentHandler,
+        DivisionIntentHandler,
+        RaizIntentHandler,
+        ConversionUnidadesIntentHandler,  // Añadido aquí
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler,
-        SumaIntentHandler,
-        RestaIntentHandler,
-        ConversionUnidadesIntentHandler,
-        MultiplicacionIntentHandler,
-        DivisionIntentHandler,
-        RaizIntentHandler,
         IntentReflectorHandler)
     .addErrorHandlers(
         ErrorHandler)
