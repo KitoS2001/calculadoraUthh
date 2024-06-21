@@ -1,0 +1,182 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "slots": [],
+          "name": "HelloWorldIntent",
+          "samples": [
+            "hola",
+            "como estás",
+            "di hola mundo",
+            "di hola",
+            "hola mundo"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "slots": [],
+          "name": "helloWordIntent",
+          "samples": [
+            "hola mundo",
+            "di hola",
+            "di hola mundo",
+            "como estás",
+            "hola"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "uno",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "dos",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "name": "sumaIntent",
+          "samples": [
+            "alexa cuanto es {uno} mas {dos}",
+            "alexa {uno} mas {dos}",
+            "alexa suma {uno} mas {dos}"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "uno",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "dos",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "name": "restaIntent",
+          "samples": [
+            "alexa resta {uno} menos {dos}",
+            "alexa cuanto es {uno} menos {dos}",
+            "alexa {uno} menos {dos}"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "uno",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "dos",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "name": "multiplicacionIntent",
+          "samples": [
+            "aleca {uno} por {dos}",
+            "alexa cuanto es {uno} por {dos}",
+            "alexa multiplica {uno} por {dos}"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "uno",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "dos",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "name": "divicionIntent",
+          "samples": [
+            "alexa cuanto es {uno} entre {dos}",
+            "alexa {uno} entre {dos}",
+            "alexa divide {uno} entre {dos}"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "uno",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "name": "raizIntent",
+          "samples": [
+            "alexa cuanto es la raiz de {uno}",
+            "alexa saca la raiz de {uno}",
+            "alexa raiz de {uno}"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "cantidad",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "unidadOrigen",
+              "type": "LISTA_UNIDADES"
+            },
+            {
+              "name": "unidadDestino",
+              "type": "LISTA_UNIDADES"
+            }
+          ],
+          "name": "conversionUnidadesIntent",
+          "samples": [
+            "convierte {cantidad} {unidadOrigen} {unidadDestino}",
+            "convierte {cantidad} {unidadOrigen} en {unidadDestino}",
+            "convierte {cantidad} {unidadOrigen} a {unidadDestino}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "millas"
+              }
+            },
+            {
+              "name": {
+                "value": "kilometros"
+              }
+            },
+            {
+              "name": {
+                "value": "pies"
+              }
+            },
+            {
+              "name": {
+                "value": "metros"
+              }
+            }
+          ],
+          "name": "LISTA_UNIDADES"
+        }
+      ],
+      "invocationName": "calculadora uthh"
+    }
+  }
+}
